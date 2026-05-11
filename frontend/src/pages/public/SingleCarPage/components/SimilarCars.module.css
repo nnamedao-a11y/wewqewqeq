@@ -86,3 +86,47 @@
   .similarCars { font-size: var(--fs-24); line-height: 24px; }
   .pagination { flex-wrap: wrap; }
 }
+
+/* Skeleton placeholders shown while /api/public/featured is loading. ------ */
+.skeletonCard {
+  flex: 1 1 0;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 540px;
+}
+.skeletonImage {
+  width: 100%;
+  height: 388px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.04) 100%);
+  background-size: 200% 100%;
+  animation: simskel-shimmer 1.4s linear infinite;
+  border-radius: 8px;
+}
+.skeletonLines {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 4px;
+}
+.skeletonLine {
+  height: 14px;
+  width: 80%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.05) 100%);
+  background-size: 200% 100%;
+  animation: simskel-shimmer 1.4s linear infinite;
+  border-radius: 4px;
+}
+@keyframes simskel-shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* Disabled pagination buttons ------------------------------------------- */
+.pageBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+

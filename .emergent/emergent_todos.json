@@ -1,18 +1,30 @@
 [
   {
-    "content": "Create reusable VinSearchDropdown component",
+    "content": "Add safe error stringifier (Pydantic 422 → string)",
     "status": "completed"
   },
   {
-    "content": "Wire dropdown into header1.jsx",
+    "content": "Fix useCarByVin + VinSearchDropdown to never set error to a non-string value",
     "status": "completed"
   },
   {
-    "content": "Wire dropdown into frame-component22.jsx (welcome hero)",
+    "content": "Rewrite SimilarCars to fetch /api/public/featured (exclude current VIN, paginate)",
     "status": "completed"
   },
   {
-    "content": "Verify via testing agent — 10/10 user stories PASS, real LIVE parser data confirmed",
+    "content": "Rewrite CarCard to accept real `data` prop and become a Link to /cars/<vin>",
     "status": "completed"
+  },
+  {
+    "content": "Verify Similar Cars click → navigates to proper /cars/<VIN> with real data",
+    "status": "completed"
+  },
+  {
+    "content": "Verify no more React crash on bad inputs in header search",
+    "status": "completed"
+  },
+  {
+    "content": "Run testing_agent_v3 — full end-to-end re-validation",
+    "status": "in_progress"
   }
 ]

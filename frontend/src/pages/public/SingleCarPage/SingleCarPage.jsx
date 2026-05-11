@@ -166,7 +166,7 @@ const SingleCarPage = () => {
       {!loading && error && error !== 'not_found' && (
         <div className={styles.stateBox}>
           <div className={styles.stateTitle}>Couldn’t load this vehicle</div>
-          <div className={styles.stateText}>{error}</div>
+          <div className={styles.stateText}>{typeof error === 'string' ? error : 'Unexpected error format.'}</div>
           <button type="button" className={styles.stateBtn} onClick={() => window.location.reload()}>
             Try again
           </button>

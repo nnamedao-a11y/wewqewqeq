@@ -110,7 +110,7 @@ export default function useCarByVin(vinOrSlug) {
         }
       } catch (e) {
         if (reqIdRef.current !== reqId) return;
-        setError(e?.response?.data?.detail || e?.message || "Network error");
+        setError(extractErrorMessage(e));
         setCar(null);
       } finally {
         if (reqIdRef.current === reqId) setLoading(false);
@@ -119,4 +119,34 @@ export default function useCarByVin(vinOrSlug) {
   }, [vinOrSlug]);
 
   return { loading, error, car, raw };
+}
+
+/**
+ * Convert any error response (axios error, Pydantic 422 detail array, plain
+ * string, etc.) into a single human-readable string. Critical: React must
+ * never receive a raw object as a child — rendering `{detail}` where detail
+ * is `[{type, loc, msg, input, ctx, url}]` throws "Objects are not valid as
+ * a React child" and unmounts the whole subtree.
+ */
+function extractErrorMessage(err) {
+  if (!err) return "Unknown error";
+  // axios style
+  const data = err?.response?.data;
+  const status = err?.response?.status;
+  if (data) {
+    if (typeof data === "string") return data;
+    if (Array.isArray(data?.detail)) {
+      const msgs = data.detail
+        .map((d) => (typeof d === "string" ? d : (d?.msg || d?.message || "")))
+        .filter(Boolean);
+      if (msgs.length) return msgs.join("; ");
+    }
+    if (typeof data?.detail === "string") return data.detail;
+    if (typeof data?.detail === "object") return data.detail?.msg || JSON.stringify(data.detail);
+    if (typeof data?.message === "string") return data.message;
+    if (typeof data?.error === "string") return data.error;
+  }
+  if (typeof err?.message === "string") return err.message;
+  if (status) return `Request failed (HTTP ${status})`;
+  return "Network error";
 }

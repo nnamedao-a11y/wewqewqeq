@@ -93,7 +93,20 @@ const VinSearchDropdown = ({
         setItems(arr.slice(0, MAX_ITEMS));
       } catch (e) {
         if (lastReqRef.current !== reqId) return;
-        setError(e?.response?.data?.detail || "Search unavailable. Please try again.");
+        // Never set error to a non-string (e.g. Pydantic 422 detail array) — would crash React.
+        const data = e?.response?.data;
+        let msg = "Search unavailable. Please try again.";
+        if (data) {
+          if (typeof data === "string") msg = data;
+          else if (Array.isArray(data?.detail)) {
+            const m = data.detail.map((d) => (typeof d === "string" ? d : d?.msg)).filter(Boolean).join("; ");
+            if (m) msg = m;
+          } else if (typeof data?.detail === "string") msg = data.detail;
+          else if (typeof data?.detail?.msg === "string") msg = data.detail.msg;
+        } else if (typeof e?.message === "string") {
+          msg = e.message;
+        }
+        setError(msg);
         setItems([]);
       } finally {
         if (lastReqRef.current === reqId) setLoading(false);
