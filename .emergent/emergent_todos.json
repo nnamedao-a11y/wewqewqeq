@@ -12,7 +12,7 @@
     "status": "completed"
   },
   {
-    "content": "Verify via testing agent: typeahead works on both inputs, real LIVE/CACHE chips, click → /cars/<VIN>",
-    "status": "in_progress"
+    "content": "Verify via testing agent — 10/10 user stories PASS, real LIVE parser data confirmed",
+    "status": "completed"
   }
 ]

@@ -61,10 +61,47 @@ but it had no data fetching — every prop was a default placeholder.
 - **SimilarCars block** at the bottom of SingleCarPage is still showing the static placeholder
   "Lucid Motors Air Pure × 3" — should be wired to `GET /api/public/featured` or to a
   "similar by make/model" endpoint.
-- Header VIN search (`/search/:query`) currently routes through the same `SingleCarPage`;
-  it could fall back to lot-number search if the input is not a valid 17-char VIN.
 - Layout polish around responsiveness on smaller breakpoints (≤ 925 px).
 - Optional: clean up font-preload warnings (low priority, perf only).
+
+## ✅ Session 2 — VIN typeahead dropdown (parsers wired live)
+
+**Goal:** Connect real parser logic to the public site's search inputs — header and
+welcome-page hero. As the user types ≥ 2 characters, show a live dropdown of suggestions
+pulled from the real BidMotors parser via `GET /api/public/search/suggest`. Clicking a
+suggestion navigates straight to `/cars/<VIN>` (the canonical SingleCarPage).
+
+**Shipped:**
+- New reusable component `frontend/src/components/public/VinSearchDropdown.{jsx,css}`
+  - Debounced input (320 ms), 2-char minimum, ≤ 8 results.
+  - Mini-card per suggestion: thumbnail, title (title-case), `Lot · Year · Mileage · Location`,
+    VIN in monospace yellow, LIVE / CACHE chip from `_src` field.
+  - Keyboard nav: ArrowUp/Down highlights, Enter opens highlighted, Escape closes.
+  - Click outside closes; click on item navigates to `/cars/<VIN>`.
+  - Dark theme matched to BIBI chrome (#16161a + #FEAE00 accent).
+  - States: loading spinner, "Search unavailable" error, "No matches" + fallback CTA
+    "Open full lookup for <Q>".
+- Wired into `figma_home/components/header1.jsx` — original Figma layout untouched,
+  dropdown anchored via `position: relative` on the form.
+- Wired into `figma_home/components/frame-component22.jsx` ("Calculate a car yourself"
+  welcome hero) with the same component and same behaviour.
+
+**Verification (testing_agent_v3 iteration_2 — 10/10 user stories PASS):**
+- Header partial `1N4AL` → 1 LIVE/CACHE suggestion (Nissan Altima) → click → /cars/<VIN> ✓
+- Header `nissan` → 8 LIVE Nissan suggestions from real-time BidMotors parser ✓
+- Welcome hero full VIN → 1 LIVE suggestion → click → /cars/<VIN> rendered correctly ✓
+- 1-char query → dropdown doesn't appear (min 2) ✓
+- Invalid query → "No matches" state + fallback CTA ✓
+- Keyboard nav: ArrowUp/Down/Enter/Esc all functional ✓
+- Click-outside closes ✓
+- Two inputs independent ✓
+- No console errors / no failed unexpected network calls ✓
+
+**Files changed (this session):**
+- (new) `frontend/src/components/public/VinSearchDropdown.jsx`
+- (new) `frontend/src/components/public/VinSearchDropdown.css`
+- `frontend/src/figma_home/components/header1.jsx`
+- `frontend/src/figma_home/components/frame-component22.jsx`
 
 ## Backend safety warnings (deferred, not blocking)
 On startup the FastAPI server warns:
