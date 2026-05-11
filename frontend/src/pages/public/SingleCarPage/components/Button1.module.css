@@ -1,0 +1,29 @@
+.button,
+.contactUs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-10) var(--padding-32);
+  background-color: var(--color-orange-100);
+  height: var(--height-45);
+  width: var(--width-171);
+  border-radius: var(--br-6);
+  box-sizing: border-box;
+  transition: background-color 0.15s ease;
+}
+.button:hover { background-color: var(--color-chocolate-100); }
+.contactUs {
+  height: var(--height-13);
+  flex: 1;
+  position: relative;
+  font-size: 14px;
+  font-family: var(--font-mazzard);
+  font-weight: 500;          /* Medium */
+  color: var(--color-black);
+  text-align: center;
+  white-space: nowrap;
+}

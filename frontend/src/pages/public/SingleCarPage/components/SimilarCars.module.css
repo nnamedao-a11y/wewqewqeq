@@ -1,0 +1,88 @@
+.similarCarsContainerWrapper {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--padding-0) var(--padding-20) var(--padding-76);
+  box-sizing: border-box;
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--fs-40);
+  color: var(--color-white);
+  font-family: var(--font-mazzard);
+}
+.similarCarsContainer {
+  width: 1720px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-72);
+  max-width: 100%;
+}
+.similarCars {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: inherit;
+  line-height: 99.9%;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: inherit;
+}
+.cars { color: var(--color-orange-100); }
+.carCards,
+.pagination {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-24);
+}
+.carCards { max-width: 100%; }
+.pagination {
+  justify-content: flex-end;
+  font-size: var(--fs-14);
+  color: var(--color-white);
+}
+.pageBtn {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  width: var(--width-40);
+  height: var(--height-40);
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.pageBtn:hover { background-color: var(--color-gray-500); }
+.lsiconleftFilled,
+.lsiconleftFilled2 {
+  width: var(--width-40);
+  height: var(--height-40);
+  display: block;
+}
+.lsiconleftFilled2 { transform: scaleX(-1); }
+.pageNum {
+  position: relative;
+  line-height: 99.9%;
+  text-transform: capitalize;
+  min-width: 50px;
+  text-align: center;
+}
+@media screen and (max-width: 1875px) {
+  .carCards { flex-wrap: wrap; justify-content: center; }
+}
+@media screen and (max-width: 1400px) {
+  .similarCarsContainerWrapper { padding-bottom: 49px; box-sizing: border-box; }
+}
+@media screen and (max-width: 925px) {
+  .similarCarsContainerWrapper { padding-bottom: var(--padding-32); box-sizing: border-box; }
+  .similarCarsContainer { gap: var(--gap-36); }
+  .similarCars { font-size: 32px; line-height: var(--lh-32); }
+}
+@media screen and (max-width: 450px) {
+  .similarCarsContainer { gap: var(--gap-18); }
+  .similarCars { font-size: var(--fs-24); line-height: 24px; }
+  .pagination { flex-wrap: wrap; }
+}

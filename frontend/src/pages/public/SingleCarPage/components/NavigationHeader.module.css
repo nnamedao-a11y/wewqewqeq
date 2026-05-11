@@ -1,0 +1,111 @@
+/* =============================================================================
+ * NavigationHeader \u2014 pixel spec (May 2026)
+ *
+ *   \u2022 padding-top    : 52  (gap from header bottom \u2192 breadcrumb top)
+ *   \u2022 padding-left   : 100
+ *   \u2022 padding-right  : 100
+ *   \u2022 padding-bottom : 150 (icon row bottom \u2192 next image-grid block top)
+ *   \u2022 breadcrumb \u2192 title gap : 72
+ *   \u2022 title font     : 80px Mazzard
+ *   \u2022 right-side icons : 24\u00d724, gap 24, right anchor = padding-right (100)
+ * ====================================================================== */
+.navigationHeader {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  /*
+   * padding-bottom 122 = spec 150 minus the 28 px gap between an icon's bottom
+   * edge (icons are 24 tall and centered in an 80 px title row → icon bottom
+   * sits 28 px above title row bottom) and the title row's bottom edge. This
+   * yields an exact 150 px gap from "heart icon bottom → image grid top".
+   */
+  padding: 52px 100px 122px;
+  box-sizing: border-box;
+  text-align: left;
+  font-family: var(--font-mazzard);
+  color: var(--color-dimgray-100);
+}
+.headerInner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+  width: 100%;
+}
+
+/* breadcrumb */
+.breadcrumb {
+  margin: 0;
+  font-size: 20px;
+  line-height: 99.9%;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: inherit;
+  color: var(--color-dimgray-100);
+}
+.span { color: var(--color-black); }
+.lucidMotorsAir { color: var(--color-orange-100); }
+
+/* title row */
+.titleRow {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: nowrap;
+}
+.title {
+  margin: 0;
+  font-size: 80px;
+  line-height: 99.9%;
+  font-weight: 400;
+  font-family: var(--font-mazzard);
+  color: var(--color-white);
+  display: inline-block;
+  flex: 0 1 auto;
+}
+
+/* icons \u2014 24\u00d724, gap 24 */
+.iconRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+.iconBtn {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+.iconBtn:hover { opacity: 0.85; }
+.iconImg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+@media screen and (max-width: 1400px) {
+  .navigationHeader { padding: 40px 50px 100px; }
+  .headerInner { gap: 48px; }
+  .title { font-size: 56px; }
+}
+@media screen and (max-width: 925px) {
+  .navigationHeader { padding: 24px 24px 64px; }
+  .headerInner { gap: 28px; }
+  .title { font-size: 32px; line-height: 1.05; min-width: 0; }
+  .breadcrumb { font-size: 14px; }
+}
+@media screen and (max-width: 450px) {
+  .navigationHeader { padding: 16px 16px 48px; }
+  .headerInner { gap: 18px; }
+  .title { font-size: 24px; }
+  .breadcrumb { font-size: 12px; }
+}

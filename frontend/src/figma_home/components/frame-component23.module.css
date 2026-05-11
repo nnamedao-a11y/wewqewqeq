@@ -1,0 +1,336 @@
+/* =============================================================================
+ * BIBI Cars — "How we work" block
+ *
+ * Pixel-perfect Figma rebuild.
+ *   Background      : #000000 (var(--color-black))
+ *   Title           : "How we work" - Mazzard H Bold, 96px, color #FEAE00,
+ *                       uppercase, top-left of inner container.
+ *   Tag (right)     : bracketed label
+ *                       [ WE WORK FOR EACH CLIENT
+ *                         DEPENDING ON THE BUDGET ]
+ *                       Brackets: 3px stroke #555452, height 76px
+ *                       Line 1: orange (#FEAE00), Mazzard H Medium, ~16-18px
+ *                       Line 2: white,           Mazzard H Medium, ~16-18px
+ *
+ *   Cards (3 across):
+ *     [1] Standard          — bg #1D1D1B (dark)
+ *     [2] Turnkey           — bg #FEAE00 (yellow)  + "popular" pill
+ *     [3] Sourcing+Delivery — bg #1D1D1B (dark)
+ *
+ *   Each card has:
+ *     - top-left bracket counter [1] / [2] / [3] (3px stroke #555452 or #040103)
+ *     - title          : Mazzard H Bold, 40px (orange on dark, #040103 on yellow)
+ *     - description    : Helvetica Now Display Regular, 22-24px
+ *                          (white on dark, #040103 on yellow)
+ *     - cta line       : Helvetica Now Display Bold, 30-32px
+ *                          (orange on dark, #040103 on yellow)
+ *
+ *   Bottom card:
+ *     "Have a question? / Contact us" - Mazzard H Bold, 32px
+ *     phones - Helvetica Now Display Bold, 24px, orange
+ *     1px #FEAE00 border, rounded 8px
+ * ========================================================================== */
+
+.howWeWorkSection {
+  align-self: stretch;
+  background-color: var(--color-black);
+  font-family: var(--font-mazzard);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1720px;
+  padding: 154px 100px 154px;
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+  box-sizing: border-box;
+}
+
+/* ─── Top row ────────────────────────────────────────────────────────── */
+
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  width: 100%;
+}
+
+.howWeWork {
+  margin: 0;
+  font-family: var(--font-mazzard);
+  /* Mazzard H Bold = 700 */
+  font-weight: 700;
+  font-size: 96px;
+  line-height: 100%;
+  color: var(--color-orange-100);
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  /* Default left-aligned to match Figma comp #4 (centered title is shown
+     in mocks with shorter copy; we keep it top-left like the export). */
+}
+
+.eachClientTag {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 24px;
+}
+
+.eachClientStack {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: var(--font-mazzard);
+  font-weight: 500; /* Mazzard H Medium */
+  font-size: 18px;
+  line-height: 120%;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.eachClientYellow { color: var(--color-orange-100); }
+.eachClientWhite  { color: var(--color-white); }
+
+/* ─── Bracketed label `[ … ]` with 3px #555452 brackets ──────────────── */
+/* The bracket is built with two pseudo-elements: ::before is "[" and
+   ::after is "]". Each is rendered as a vertical 3px line plus two
+   small horizontal caps, all in the variable colour `--bracket-color`.
+*/
+
+.bracketLabel {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  padding: 0 14px;
+  --bracket-color: var(--color-dimgray-200);
+}
+
+.bracketChild {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 14px;
+}
+
+.bracketLabel::before,
+.bracketLabel::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  bottom: -8px;
+  width: 18px;
+  border: 3px solid var(--bracket-color);
+}
+
+.bracketLabel::before {
+  left: 0;
+  border-right: 0;
+}
+
+.bracketLabel::after {
+  right: 0;
+  border-left: 0;
+}
+
+/* ─── Cards row ──────────────────────────────────────────────────────── */
+
+.cardsRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+  padding: 40px 40px 56px;
+  min-height: 620px;
+  box-sizing: border-box;
+}
+
+.cardDark {
+  background-color: var(--color-gray-200); /* #1D1D1B */
+  /* Subtle leather/noise vignette to match Figma material */
+  background-image:
+    radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 60%);
+}
+
+.cardYellow {
+  background-color: var(--color-orange-100);
+  /* Card 2 is slightly larger / popped forward in the Figma — keep flat
+     visual but allow the popular pill to align right. */
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 48px;
+}
+
+.tileNum {
+  font-family: var(--font-mazzard);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 100%;
+  color: inherit;
+  display: inline-block;
+  min-width: 14px;
+  text-align: center;
+}
+
+.cardDark .tileNum   { color: var(--color-dimgray-200); }
+.cardYellow .tileNum { color: var(--color-gray-500); }   /* #040103 */
+
+/* ─── Popular pill ──────────────────────────────────────────────────── */
+
+.popularPill {
+  cursor: default;
+  border: 1px solid var(--color-black);
+  background: transparent;
+  color: var(--color-black);
+  font-family: var(--font-mazzard);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  padding: 8px 16px;
+  border-radius: 6px;
+  line-height: 1;
+  text-transform: lowercase;
+}
+
+/* ─── Card titles ───────────────────────────────────────────────────── */
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--font-mazzard);
+  /* Mazzard H Bold = 700 */
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: -0.005em;
+}
+
+.titleOrange { color: var(--color-orange-100); }
+.titleBlack  { color: var(--color-gray-500); }
+
+/* ─── Card description ─────────────────────────────────────────────── */
+
+.cardDesc {
+  margin: 0;
+  font-family: var(--font-helvetica-now-display);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 130%;
+  max-width: 520px;
+}
+
+.descWhite { color: var(--color-white); }
+.descBlack { color: var(--color-gray-500); }
+
+/* ─── Card CTA / catchphrase ───────────────────────────────────────── */
+
+.cardCta {
+  margin: 0;
+  margin-top: auto; /* pin to bottom */
+  font-family: var(--font-helvetica-now-display);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 115%;
+  letter-spacing: -0.005em;
+}
+
+.ctaOrange { color: var(--color-orange-100); }
+.ctaBlack  { color: var(--color-gray-500); }
+
+/* ─── Bottom: Have a question card ─────────────────────────────────── */
+
+.questionWrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.questionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 56px 96px;
+  border: 1px solid var(--color-orange-100);
+  border-radius: 8px;
+  text-align: center;
+  width: 100%;
+  max-width: 564px;
+  box-sizing: border-box;
+}
+
+.questionTitle {
+  margin: 0;
+  font-family: var(--font-mazzard);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 120%;
+  color: var(--color-white);
+  text-align: center;
+}
+
+.questionPhones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.questionPhone {
+  font-family: var(--font-helvetica-now-display);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 100%;
+  color: var(--color-orange-100);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: filter 0.15s ease;
+}
+
+.questionPhone:hover { filter: brightness(1.15); }
+
+/* ─── Responsive ───────────────────────────────────────────────────── */
+
+@media screen and (max-width: 1350px) {
+  .inner { padding: 110px 64px; gap: 72px; }
+  .howWeWork { font-size: 72px; }
+  .cardTitle { font-size: 34px; }
+  .cardCta { font-size: 28px; }
+  .card { min-height: 560px; padding: 36px 32px 48px; gap: 32px; }
+}
+
+@media screen and (max-width: 925px) {
+  .inner { padding: 64px 24px; gap: 40px; }
+  .topRow { flex-direction: column; gap: 24px; }
+  .howWeWork { font-size: 44px; }
+  .eachClientTag { padding-top: 0; }
+  .eachClientStack { font-size: 14px; white-space: normal; }
+  .cardsRow { grid-template-columns: 1fr; gap: 16px; }
+  .card { min-height: 0; padding: 28px 22px 36px; gap: 24px; }
+  .cardTitle { font-size: 28px; }
+  .cardDesc { font-size: 18px; }
+  .cardCta  { font-size: 22px; }
+  .questionCard { padding: 36px 24px; gap: 22px; }
+  .questionTitle { font-size: 24px; }
+  .questionPhone { font-size: 18px; }
+}
+
+@media screen and (max-width: 480px) {
+  .howWeWork { font-size: 36px; }
+}

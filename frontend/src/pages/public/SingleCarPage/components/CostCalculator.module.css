@@ -1,0 +1,329 @@
+.calculatorContainerWrapper {
+  width: 100%;
+  min-height: 1448px;
+  display: flex;
+  align-items: flex-start;
+  padding: var(--padding-0) var(--padding-100) 92px;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: var(--fs-40);
+  color: var(--color-white);
+  font-family: var(--font-mazzard);
+  max-width: 100%;
+}
+.calculatorContainer,
+.calculatorHeader {
+  align-self: stretch;
+  display: flex;
+  max-width: 100%;
+}
+.calculatorContainer {
+  flex: 1;
+  background-color: var(--color-gray-500);
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--padding-72);
+  box-sizing: border-box;
+  gap: var(--gap-72);
+}
+.calculatorHeader {
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--gap-20);
+}
+.costCalculatorForContainer {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 99.9%;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: inherit;
+  display: inline-block;
+  max-width: 100%;
+}
+.calculator { color: var(--color-orange-100); }
+.allKeyParameters {
+  width: 371px;
+  position: relative;
+  font-size: var(--fs-14);
+  line-height: 99.9%;
+  color: var(--color-gray-100);
+  text-align: right;
+  display: inline-block;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+.auctionParameters,
+.frameParent {
+  display: flex;
+  align-items: flex-start;
+  font-size: var(--fs-18);
+}
+.auctionParameters {
+  align-self: stretch;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: var(--gap-72);
+}
+.frameParent {
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gap-56);
+  min-width: 489px;
+  text-align: left;
+  color: var(--color-white);
+  font-family: var(--font-mazzard);
+}
+.preFilledFromAuctionWrapper {
+  align-self: stretch;
+  border-bottom: var(--border-11);
+  display: flex;
+  align-items: center;
+  padding: var(--padding-0) var(--padding-0) var(--padding-10);
+}
+.preFilledFromAuction {
+  position: relative;
+  line-height: 99.9%;
+  text-transform: uppercase;
+}
+.auctionParent,
+.frameGroup {
+  align-self: stretch;
+  display: flex;
+}
+.frameGroup {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-24);
+  font-size: var(--fs-14);
+}
+.auctionParent {
+  border-bottom: var(--border-2);
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--padding-0) var(--padding-0) var(--padding-2);
+  gap: var(--gap-20);
+}
+.auction,
+.copart { position: relative; }
+.copart {
+  line-height: 99.9%;
+  text-transform: uppercase;
+  color: var(--color-orange-100);
+}
+.estimationHeaderParent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--gap-56);
+  min-width: 489px;
+}
+.costBreakdown {
+  gap: var(--gap-44);
+  font-size: var(--fs-14);
+  color: var(--color-orange-100);
+}
+.costBreakdown,
+.frameContainer,
+.vehiclePurchasePriceParent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.frameContainer {
+  gap: var(--gap-24);
+  flex-shrink: 0;
+  text-align: left;
+  font-size: var(--fs-14);
+  color: var(--color-white);
+  font-family: var(--font-mazzard);
+}
+.vehiclePurchasePriceParent { gap: var(--gap-12); }
+.vehiclePurchasePriceContainer {
+  align-self: stretch;
+  position: relative;
+  line-height: 99.9%;
+}
+.priceEntry {
+  align-self: stretch;
+  border-radius: var(--br-4);
+  border: 1px solid var(--color-dimgray-200);
+  display: flex;
+  align-items: center;
+  padding: var(--padding-12) var(--padding-15);
+  gap: var(--gap-16);
+  color: var(--color-orange-100);
+}
+.priceCurrency {
+  font-size: var(--fs-14);
+  color: var(--color-orange-100);
+}
+.fillTheSumm {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-family: var(--font-mazzard);
+  font-size: var(--fs-14);
+  background-color: transparent;
+  flex: 1;
+  color: var(--color-gray-100);
+  text-align: left;
+  min-width: 300px;
+  padding: 0;
+}
+.frameWrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.auctionFeeWrapper {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.auctionFee {
+  position: relative;
+  line-height: 99.9%;
+}
+.carAuctionWrapper,
+.frameDiv {
+  display: flex;
+  align-items: center;
+}
+.frameDiv {
+  align-self: stretch;
+  border-top: var(--border-1);
+  justify-content: space-between;
+  padding: var(--padding-6) var(--padding-0) var(--padding-0);
+  gap: 0;
+  row-gap: var(--gap-20);
+  color: var(--color-gray-100);
+}
+.carAuctionWrapper {
+  flex: 1;
+  min-width: 113px;
+}
+.subTotal {
+  position: relative;
+  line-height: 99.9%;
+  text-transform: capitalize;
+  color: var(--color-white);
+}
+.portLoadingHandlingUsaParent {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-20);
+}
+.lineValue {
+  position: relative;
+  line-height: 99.9%;
+  text-transform: capitalize;
+  color: var(--color-gray-100);
+  white-space: nowrap;
+}
+.logisticsToBulgariaWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 174px;
+}
+.frameParent4 {
+  align-self: stretch;
+  border-top: var(--border-1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--padding-6) var(--padding-0) var(--padding-0);
+  gap: var(--gap-20);
+  color: var(--color-gray-100);
+}
+.customsFinalFeesWrapper {
+  height: var(--height-24);
+  display: flex;
+  align-items: center;
+}
+.totalCost {
+  align-self: stretch;
+  border-radius: var(--br-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-20);
+  flex-shrink: 0;
+  font-size: var(--fs-20);
+}
+.totalApproximateCost {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 99.9%;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: inherit;
+  color: var(--color-orange-100);
+}
+.estimateDisclaimer {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-gray-300);
+  border-left: 3px solid var(--color-saddlebrown);
+  justify-content: flex-start;
+  padding: var(--padding-16) var(--padding-14);
+  flex-shrink: 0;
+  color: var(--color-gray-100);
+}
+.approximateEstimateFinalContainer { flex: 1; position: relative; }
+.approximateEstimateFinalCo { line-height: 99.9%; }
+.approximateEstimate {
+  font-family: var(--font-mazzard);
+  color: var(--color-orange-100);
+}
+@media screen and (max-width: 1400px) {
+  .calculatorContainerWrapper {
+    min-height: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: var(--padding-60);
+    box-sizing: border-box;
+  }
+  .calculatorContainer { padding: 47px var(--padding-36); box-sizing: border-box; }
+  .calculatorHeader { flex-wrap: wrap; }
+}
+@media screen and (max-width: 925px) {
+  .calculatorContainerWrapper {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 39px;
+    box-sizing: border-box;
+  }
+  .calculatorContainer {
+    gap: var(--gap-36);
+    padding-top: 31px;
+    padding-bottom: 31px;
+    box-sizing: border-box;
+  }
+  .costCalculatorForContainer { font-size: 32px; line-height: var(--lh-32); }
+  .auctionParameters { gap: var(--gap-36); }
+  .estimationHeaderParent,
+  .frameParent { gap: var(--gap-28); min-width: 100%; }
+  .costBreakdown { gap: var(--gap-22); }
+  .priceEntry { flex-wrap: wrap; }
+  .totalCost { flex-wrap: wrap; }
+}
+@media screen and (max-width: 450px) {
+  .calculatorContainer { gap: var(--gap-18); }
+  .costCalculatorForContainer { font-size: var(--fs-24); line-height: 24px; }
+  .auctionParameters { gap: var(--gap-18); }
+  .auctionParent,
+  .frameDiv,
+  .frameParent4 { flex-wrap: wrap; }
+  .totalApproximateCost { font-size: var(--fs-16); line-height: var(--lh-16); }
+}

@@ -1,0 +1,281 @@
+/* =============================================================================
+ * ImageGrid (FrameComponent3) \u2014 pixel spec (May 2026)
+ *
+ *   \u2022 Wrapper       : sides 100, no top padding (sits 150 px below icon row)
+ *   \u2022 Hero image    : 848\u00d7636
+ *   \u2022 Sub thumbs    : 8 cards in 2 rows \u00d7 4 cols, each 203\u00d7152, gap 12
+ *   \u2022 Image column  : 848\u00d7964 total (636 + 12 + 152 + 12 + 152)
+ *   \u2022 Info card     : 848\u00d7964 (matches image column)
+ *
+ * Typography (Mazzard H family):
+ *   \u2022 TRADED button text  : 156\u00d734 button, 14 SemiBold (600)
+ *   \u2022 Section titles      : 18 SemiBold (600)
+ *   \u2022 Field labels        : 14 Medium  (500) white
+ *   \u2022 Field values        : 14 Bold    (700) orange
+ *   \u2022 Description body    : 14 Regular (400) gray #949494
+ *   \u2022 CTA button          : 327\u00d745, 14 Medium (500)
+ * ====================================================================== */
+.imageGridWrapper {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 100px 0;
+  box-sizing: border-box;
+}
+.imageGrid {
+  align-self: stretch;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
+  max-width: 100%;
+}
+
+/* ---------- LEFT \u2014 photos ------------------------------------------------ */
+.imageColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 848px;
+  flex-shrink: 0;
+}
+.image15Icon {
+  width: 848px;
+  height: 636px;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+.thumbRow {
+  width: 848px;
+  height: 152px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.image16Icon {
+  height: 152px;
+  width: 203px;
+  border-radius: 4px;
+  object-fit: cover;
+  display: block;
+}
+.allImagesCard {
+  height: 152px;
+  width: 203px;
+  border-radius: 4px;
+  background-color: var(--color-gray-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+.allImagesInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.wordpressimageIcon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+.allImages {
+  font-size: 12px;
+  line-height: 99.9%;
+  text-transform: uppercase;
+  font-family: var(--font-mazzard);
+  color: var(--color-dimgray-100);
+  font-weight: 500;
+}
+
+/* ---------- RIGHT \u2014 info card 848 \u00d7 964 ----------------------------------- */
+.infoCard {
+  width: 848px;
+  height: 964px;
+  background-color: var(--color-gray-500);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  padding: 32px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+.infoCardInner {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 20px;
+}
+.infoBlocks {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 32px;
+}
+.tradedRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.tradedButton {
+  cursor: pointer;
+  border: 1px solid var(--color-orange-100);
+  padding: 8px 10px;
+  background-color: transparent;
+  width: 156px;
+  height: 34px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tradedButton:hover {
+  background-color: var(--color-chocolate-200);
+}
+.tradedText {
+  font-size: 14px;
+  line-height: 99.9%;
+  text-transform: uppercase;
+  font-family: var(--font-mazzard);
+  font-weight: 600;          /* SemiBold */
+  color: var(--color-orange-100);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 32px;
+}
+.sectionHeader {
+  align-self: stretch;
+  border-bottom: 1px solid var(--color-dimgray-200);
+  display: flex;
+  align-items: center;
+  padding: 0 0 10px;
+}
+.sectionTitle {
+  font-size: 18px;
+  line-height: 99.9%;
+  text-transform: uppercase;
+  font-family: var(--font-mazzard);
+  font-weight: 600;          /* SemiBold */
+  color: var(--color-white);
+  margin: 0;
+}
+.detailsGrid {
+  display: flex;
+  align-items: flex-start;
+  gap: 128px;
+}
+.detailsCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 24px;
+  min-width: 213px;
+}
+.detailRow {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.detailLabel {
+  width: 142px;
+  font-size: 14px;
+  line-height: 99.9%;
+  text-transform: none;       /* labels are typed in proper case: "Body type", "Drive type", "Bid price" */
+  font-family: var(--font-mazzard);
+  font-weight: 500;          /* Medium */
+  color: var(--color-white);
+  flex-shrink: 0;
+  display: inline-block;
+}
+.detailValue {
+  flex: 1;
+  font-size: 14px;
+  line-height: 99.9%;
+  text-transform: uppercase;
+  font-family: var(--font-mazzard);
+  font-weight: 700;          /* Bold */
+  color: var(--color-orange-100);
+  min-width: 100px;
+  display: inline-block;
+}
+.detailValueLg {
+  font-size: 20px;
+  line-height: 17px;
+  text-transform: uppercase;
+  font-family: var(--font-mazzard);
+  font-weight: 700;          /* Bold */
+  color: var(--color-orange-100);
+  margin: 0;
+}
+
+.description {
+  align-self: stretch;
+  font-size: 14px;
+  line-height: 99.9%;
+  font-family: var(--font-mazzard);
+  font-weight: 400;          /* Regular */
+  color: var(--color-gray-100);   /* #949494 */
+}
+
+/* CTA button (extra spec): 327 \u00d7 45, 14 Medium ------------------------------ */
+.ctaSlot {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 1875px) {
+  .imageGrid { flex-wrap: wrap; justify-content: center; }
+  .imageColumn,
+  .infoCard {
+    width: 100%;
+    max-width: 848px;
+  }
+}
+@media screen and (max-width: 925px) {
+  .imageGridWrapper { padding: 0 24px; }
+  .imageColumn {
+    width: 100%;
+    max-width: 100%;
+  }
+  .image15Icon {
+    width: 100%;
+    height: auto;
+    max-height: 60vw;
+  }
+  .thumbRow {
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+  }
+  .image16Icon,
+  .allImagesCard {
+    width: calc((100% - 36px) / 4);
+    height: auto;
+    aspect-ratio: 203 / 152;
+  }
+  .infoCard {
+    width: 100%;
+    height: auto;
+    padding: 24px;
+  }
+  .detailsGrid { gap: 32px; flex-wrap: wrap; }
+}

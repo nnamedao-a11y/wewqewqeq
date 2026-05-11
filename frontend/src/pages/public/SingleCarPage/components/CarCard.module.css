@@ -1,0 +1,261 @@
+.card,
+.buttonParent {
+  height: var(--height-764);
+  width: var(--width-560);
+  border-radius: var(--br-8);
+  flex-shrink: 0;
+  display: flex;
+  align-items: stretch;
+}
+.card {
+  background-color: var(--color-dimgray-100);
+  text-align: left;
+  font-size: var(--fs-13);
+  color: var(--color-black);
+  font-family: var(--font-mazzard);
+}
+.buttonParent {
+  background-color: var(--color-gray-500);
+  overflow: hidden;
+  flex-direction: column;
+  padding: var(--padding-26);
+  box-sizing: border-box;
+  gap: var(--gap-24);
+}
+
+/* ── IMAGE ───────────────────────────────────────────────────────────────────── */
+.imageWrapper {
+  width: 100%;
+  height: 388px;
+  position: relative;
+  border-radius: var(--br-8);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.imageInner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.image15Icon {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tradingDetails {
+  position: absolute;
+  left: 17px;
+  top: 17px;
+  height: var(--height-32);
+  width: var(--width-189);
+  background-color: var(--color-gray-600);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--padding-14);
+  box-sizing: border-box;
+  border-radius: var(--br-4);
+}
+.tradingDate {
+  position: relative;
+  font-size: var(--fs-13);
+  color: var(--color-black);
+  font-weight: 500;
+  line-height: 99.9%;
+  text-transform: capitalize;
+}
+
+/* ── BODY ─────────────────────────────────────────────────────────────────────── */
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 28px;
+  flex: 1;
+}
+
+.timerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-16);
+}
+.iconoirclockParent {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--height-32);
+  background-color: var(--color-orange-200);
+  padding: var(--padding-4) var(--padding-8);
+  border-radius: var(--br-4);
+  box-sizing: border-box;
+}
+.iconoirclock {
+  width: var(--width-24);
+  height: var(--height-24);
+  display: block;
+}
+.d4h35m {
+  position: relative;
+  font-size: var(--fs-13);
+  color: var(--color-black);
+  line-height: 99.9%;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.frameIcons {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-16);
+}
+.frameIcon {
+  height: var(--height-32);
+  width: var(--width-32);
+  display: block;
+}
+
+/* ── TITLE ───────────────────────────────────────────────────────────────────── */
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-size: var(--fs-24);
+  color: var(--color-white);
+}
+.lucidMotorsAir {
+  margin: 0;
+  font-size: inherit;
+  line-height: 99.9%;
+  font-weight: 400;
+  font-family: inherit;
+  text-transform: capitalize;
+}
+.detailsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: var(--fs-14);
+  color: var(--color-whitesmoke);
+}
+.row1 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.purchasePriceParent {
+  display: flex;
+  flex-direction: column;
+  gap: 8.5px;
+  flex-shrink: 0;
+}
+.purchasePrice {
+  position: relative;
+  line-height: 99.9%;
+  text-transform: capitalize;
+}
+.priceSquaresParent {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: var(--fs-20);
+  color: var(--color-orange-100);
+  z-index: 1;
+}
+.priceSquares {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--br-8);
+  background-color: var(--color-black);
+  z-index: 0;
+}
+.h3 {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 99.9%;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: inherit;
+  z-index: 1;
+  white-space: nowrap;
+}
+.mileageEngineBlock {
+  display: flex;
+  align-items: flex-start;
+  gap: 26px;
+}
+.labelsCol,
+.valuesCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.valuesCol { color: var(--color-orange-100); }
+.mileage,
+.engine,
+.km,
+.lPetrol {
+  position: relative;
+  line-height: 99.9%;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+.km,
+.lPetrol { text-transform: uppercase; }
+.row2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.driveParent {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-44);
+}
+.drive {
+  position: relative;
+  line-height: 99.9%;
+  text-transform: capitalize;
+  color: var(--color-white);
+}
+.allWheel {
+  position: relative;
+  line-height: 99.9%;
+  text-transform: uppercase;
+  color: var(--color-orange-100);
+}
+
+/* ── FOOTER ────────────────────────────────────────────────────────────────── */
+.footerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: var(--fs-14);
+  color: var(--color-whitesmoke);
+}
+.estimatedFinalCostToBulgarParent {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.estimatedFinalCost {
+  position: relative;
+  line-height: 99.9%;
+}
+.divFinalCost {
+  position: relative;
+  font-size: var(--fs-16);
+  text-transform: uppercase;
+  color: var(--color-orange-100);
+  line-height: 99.9%;
+  white-space: nowrap;
+}

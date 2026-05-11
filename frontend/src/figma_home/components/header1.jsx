@@ -1,0 +1,188 @@
+import { useState, useMemo, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
+import CONTACTS1 from "./c-o-n-t-a-c-t-s1";
+import FrameComponent17 from "./frame-component17";
+import { useCustomerAuth } from "../../pages/public/CustomerAuth";
+import { useLang } from "../../i18n";
+import styles from "./header1.module.css";
+
+const API_URL = process.env.REACT_APP_BACKEND_URL || "";
+const SITE_INFO_CACHE = "__bibi_site_info_promise__";
+
+function fetchSiteInfo() {
+  if (typeof window === "undefined") return Promise.resolve(null);
+  if (!window[SITE_INFO_CACHE]) {
+    window[SITE_INFO_CACHE] = axios
+      .get(`${API_URL}/api/site-info`)
+      .then((r) => r.data)
+      .catch(() => null);
+  }
+  return window[SITE_INFO_CACHE];
+}
+
+/**
+ * Top header — keeps the EXACT Figma export layout (header1.module.css with
+ * its flex-end / margin tricks). Functionality is wired on top WITHOUT
+ * altering the markup hierarchy:
+ *
+ *   • Logo            → /
+ *   • CATALOG         → /catalog
+ *   • CALCULATOR      → /calculator
+ *   • ABOUT US        → /about
+ *   • CONTACTS        → /contacts
+ *   • Search          → /vin/<query>
+ *   • Phones          → tel: links
+ *   • ENG dropdown    → switches public language (handled inside FrameComponent17)
+ *   • Profile icon    → /cabinet/login (or cabinet root if customer is signed in)
+ *   • CONTACT US      → /contacts#phone
+ */
+const Header1 = ({ className = "" }) => {
+  const navigate = useNavigate();
+  const { customer } = useCustomerAuth();
+  const { lang } = useLang();
+  const [siteInfo, setSiteInfo] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchSiteInfo().then((d) => {
+      if (!cancelled) setSiteInfo(d);
+    });
+    return () => { cancelled = true; };
+  }, []);
+
+  // Admin-managed phones (with sensible default)
+  const phones = useMemo(() => {
+    const fromHeader = (siteInfo?.header?.phones || []).filter(Boolean);
+    if (fromHeader.length) return fromHeader;
+    const fromFooter = (siteInfo?.footer?.contacts?.phones || []).filter(Boolean);
+    if (fromFooter.length) return fromFooter;
+    return ["+359 875 313 158", "+359 897 884 804"];
+  }, [siteInfo]);
+
+  // Original Figma export uses fixed widths for nav pills — we keep them so
+  // the layout never wraps. Labels translate based on language.
+  const navItems = useMemo(() => {
+    const isBg = lang === "bg";
+    return [
+      { key: "catalog",    label: isBg ? "КАТАЛОГ"    : "CATALOG",    path: "/catalog",    cONTACTSWidth: "69px",  cONTACTSWidth1: "78px" },
+      { key: "calculator", label: isBg ? "КАЛКУЛАТОР" : "CALCULATOR", path: "/calculator", cONTACTSWidth: "100px", cONTACTSWidth1: "110px" },
+      { key: "about",      label: isBg ? "ЗА НАС"     : "ABOUT US",   path: "/about",      cONTACTSWidth: "82px",  cONTACTSWidth1: "84px" },
+      { key: "contacts",   label: isBg ? "КОНТАКТИ"   : "CONTACTS",   path: "/contacts",   cONTACTSWidth: "82px",  cONTACTSWidth1: "91px" },
+    ];
+  }, [lang]);
+
+  const [vinQuery, setVinQuery] = useState("");
+
+  const handleVinSubmit = (e) => {
+    e.preventDefault();
+    const q = (vinQuery || "").trim();
+    if (!q) return;
+    navigate(`/vin/${encodeURIComponent(q)}`);
+  };
+
+  const handleProfileClick = () => {
+    let sess = null;
+    try { sess = JSON.parse(localStorage.getItem("customer_session") || "null"); } catch { /* ignore */ }
+    const id = customer?.customerId || sess?.customerId;
+    navigate(id ? `/cabinet/${id}` : "/cabinet/login");
+  };
+
+  const handleContactClick = () => navigate("/contacts#phone");
+
+  return (
+    <header className={[styles.header, className].join(" ")}>
+      <div className={styles.bibiLogo021Parent}>
+        <Link to="/" aria-label="BIBI Cars — Home" style={{ display: "inline-flex" }}>
+          <img
+            className={styles.bibiLogo021Icon}
+            loading="lazy"
+            width={141}
+            height={48.2}
+            sizes="100vw"
+            alt="BIBI Cars"
+            src="/figma/BiBi-logo-02-1.svg"
+          />
+        </Link>
+        <div className={styles.frameWrapper}>
+          <nav className={styles.contactsParent} aria-label="Primary">
+            {navItems.map((item) => (
+              <CONTACTS1
+                key={item.key}
+                cONTACTS={item.label}
+                cONTACTSWidth={item.cONTACTSWidth}
+                cONTACTSWidth1={item.cONTACTSWidth1}
+                to={item.path}
+                navKey={item.key}
+              />
+            ))}
+          </nav>
+        </div>
+      </div>
+
+      <div className={styles.headerInner}>
+        <div className={styles.searchInputParent}>
+          {/* Original .searchInput is a <div> — we render it as <form> so
+              Enter submits without changing the visual structure. */}
+          <form
+            className={styles.searchInput}
+            onSubmit={handleVinSubmit}
+            role="search"
+            data-testid="header-vin-search"
+          >
+            <div className={styles.searchInputChild} />
+            <div className={styles.boxiconssearchParent}>
+              <img
+                className={styles.boxiconssearch}
+                width={24}
+                height={24}
+                sizes="100vw"
+                alt=""
+                src="/figma/boxicons-search.svg"
+                onClick={handleVinSubmit}
+                style={{ cursor: "pointer" }}
+              />
+              <input
+                className={styles.searchByVin}
+                placeholder={lang === "bg" ? "Търсене по VIN или № на лот" : "Search by VIN or lot number"}
+                type="text"
+                value={vinQuery}
+                onChange={(e) => setVinQuery(e.target.value)}
+                data-testid="header-vin-input"
+              />
+            </div>
+            <div className={styles.searchInputItem} />
+          </form>
+          <div className={styles.placeholder}>
+            {phones[0] && (
+              <a
+                href={`tel:${(phones[0] || "").replace(/\s+/g, "")}`}
+                className={styles.placeholderContent}
+                style={{ color: "inherit", textDecoration: "none" }}
+              >
+                {phones[0]}
+                <br />
+              </a>
+            )}
+            {phones[1] && (
+              <a
+                href={`tel:${(phones[1] || "").replace(/\s+/g, "")}`}
+                className={styles.placeholderContent2}
+                style={{ color: "inherit", textDecoration: "none" }}
+              >
+                {phones[1]}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <FrameComponent17
+        onProfileClick={handleProfileClick}
+        onContactClick={handleContactClick}
+      />
+    </header>
+  );
+};
+
+export default Header1;
