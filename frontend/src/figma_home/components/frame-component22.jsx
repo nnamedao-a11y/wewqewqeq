@@ -1,7 +1,36 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import VinSearchDropdown from "../../components/public/VinSearchDropdown";
 import styles from "./frame-component22.module.css";
 
+/**
+ * "Calculate a car yourself" welcome-page block.
+ *
+ * The VIN/lot search input now has a typeahead dropdown identical to the one
+ * in the public header: as the user types ≥ 2 chars, we hit
+ * `/api/public/search/suggest` (BidMotors live + stale fallback) and render
+ * mini-cards. Clicking any card navigates straight to /cars/<VIN> — the
+ * canonical SingleCarPage. Submitting the form without picking a suggestion
+ * falls back to /vin/<query> for the full lookup chain. Empty input still
+ * routes to /calculator as before.
+ */
 const FrameComponent22 = ({ className = "" }) => {
+  const navigate = useNavigate();
+  const [q, setQ] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const v = q.trim();
+    if (!v) {
+      navigate("/calculator");
+      return;
+    }
+    const clean = v.toUpperCase().replace(/[\s-]/g, "");
+    setOpen(false);
+    navigate(`/vin/${encodeURIComponent(clean)}`);
+  };
+
   return (
     <section className={[styles.rectangleParent, className].join(" ")}>
       <div className={styles.calculate}>
@@ -28,18 +57,11 @@ const FrameComponent22 = ({ className = "" }) => {
 
             <form
               className={styles.searchForm}
-              onSubmit={(e) => {
-                e.preventDefault();
-                const v = (e.currentTarget.querySelector("input")?.value || "").trim();
-                if (v) {
-                  const clean = v.toUpperCase().replace(/[\s-]/g, "");
-                  window.location.href = `/vin/${encodeURIComponent(clean)}`;
-                } else {
-                  window.location.href = "/calculator";
-                }
-              }}
+              onSubmit={handleSubmit}
+              role="search"
+              data-testid="welcome-vin-search"
             >
-              <div className={styles.inputWrapper}>
+              <div className={styles.inputWrapper} style={{ position: "relative" }}>
                 <img
                   className={styles.boxiconssearch}
                   alt=""
@@ -49,7 +71,19 @@ const FrameComponent22 = ({ className = "" }) => {
                   className={styles.searchByVin}
                   placeholder="Search by VIN or lot number"
                   type="text"
+                  value={q}
+                  onChange={(e) => { setQ(e.target.value); setOpen(true); }}
+                  onFocus={() => setOpen(true)}
+                  autoComplete="off"
                   aria-label="Search by VIN or lot number"
+                  data-testid="welcome-vin-input"
+                />
+                <VinSearchDropdown
+                  query={q}
+                  open={open}
+                  onClose={() => setOpen(false)}
+                  align="left"
+                  variant="dark"
                 />
               </div>
 

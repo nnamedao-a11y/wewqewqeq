@@ -1,38 +1,18 @@
 [
   {
-    "content": "Create useCarByVin hook + helpers",
+    "content": "Create reusable VinSearchDropdown component",
     "status": "completed"
   },
   {
-    "content": "Rewrite SingleCarPage.jsx",
+    "content": "Wire dropdown into header1.jsx",
     "status": "completed"
   },
   {
-    "content": "Update ImageGrid.jsx — dynamic data + lightbox",
+    "content": "Wire dropdown into frame-component22.jsx (welcome hero)",
     "status": "completed"
   },
   {
-    "content": "Update NavigationHeader.jsx",
-    "status": "completed"
-  },
-  {
-    "content": "Wire CostCalculator to /api/calculator/calculate",
-    "status": "completed"
-  },
-  {
-    "content": "Add loading / not_found / error states",
-    "status": "completed"
-  },
-  {
-    "content": "Verify on multiple VINs",
-    "status": "completed"
-  },
-  {
-    "content": "Wire Estimated total price into right info panel",
-    "status": "completed"
-  },
-  {
-    "content": "Run testing_agent_v3 — 100 % pass on all 10 user stories",
-    "status": "completed"
+    "content": "Verify via testing agent: typeahead works on both inputs, real LIVE/CACHE chips, click → /cars/<VIN>",
+    "status": "in_progress"
   }
 ]

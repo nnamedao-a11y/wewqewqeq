@@ -5,6 +5,7 @@ import CONTACTS1 from "./c-o-n-t-a-c-t-s1";
 import FrameComponent17 from "./frame-component17";
 import { useCustomerAuth } from "../../pages/public/CustomerAuth";
 import { useLang } from "../../i18n";
+import VinSearchDropdown from "../../components/public/VinSearchDropdown";
 import styles from "./header1.module.css";
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || "";
@@ -73,11 +74,13 @@ const Header1 = ({ className = "" }) => {
   }, [lang]);
 
   const [vinQuery, setVinQuery] = useState("");
+  const [vinOpen, setVinOpen] = useState(false);
 
   const handleVinSubmit = (e) => {
     e.preventDefault();
     const q = (vinQuery || "").trim();
     if (!q) return;
+    setVinOpen(false);
     navigate(`/vin/${encodeURIComponent(q)}`);
   };
 
@@ -123,12 +126,15 @@ const Header1 = ({ className = "" }) => {
       <div className={styles.headerInner}>
         <div className={styles.searchInputParent}>
           {/* Original .searchInput is a <div> — we render it as <form> so
-              Enter submits without changing the visual structure. */}
+              Enter submits without changing the visual structure. The
+              <VinSearchDropdown> is anchored to this form (position:relative
+              applied inline so the dropdown can absolute-position below). */}
           <form
             className={styles.searchInput}
             onSubmit={handleVinSubmit}
             role="search"
             data-testid="header-vin-search"
+            style={{ position: "relative" }}
           >
             <div className={styles.searchInputChild} />
             <div className={styles.boxiconssearchParent}>
@@ -147,11 +153,20 @@ const Header1 = ({ className = "" }) => {
                 placeholder={lang === "bg" ? "Търсене по VIN или № на лот" : "Search by VIN or lot number"}
                 type="text"
                 value={vinQuery}
-                onChange={(e) => setVinQuery(e.target.value)}
+                onChange={(e) => { setVinQuery(e.target.value); setVinOpen(true); }}
+                onFocus={() => setVinOpen(true)}
+                autoComplete="off"
                 data-testid="header-vin-input"
               />
             </div>
             <div className={styles.searchInputItem} />
+            <VinSearchDropdown
+              query={vinQuery}
+              open={vinOpen}
+              onClose={() => setVinOpen(false)}
+              align="left"
+              variant="dark"
+            />
           </form>
           <div className={styles.placeholder}>
             {phones[0] && (
